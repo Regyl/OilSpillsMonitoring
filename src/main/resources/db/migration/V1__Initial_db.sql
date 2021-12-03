@@ -1,10 +1,31 @@
+CREATE TABLE location
+(
+    ID                 UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    creation_timestamp DATE   NOT NULL  default current_date,
+    latitude           BIGINT NOT NULL,
+    longitude          BIGINT NOT NULL
+);
+
 CREATE TABLE pollution
 (
     ID                 UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     creation_timestamp DATE NOT NULL    default current_date,
     company_name       TEXT,
     company_inn        BIGINT,
-    hazard_type        VARCHAR(100)
+    location           UUID NOT NULL,
+    hazard_type        VARCHAR(100),
+    additional_info    TEXT,
+    FOREIGN KEY (location) REFERENCES location (ID)
+);
+
+CREATE TABLE uav_route
+(
+    ID                 UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    creation_timestamp DATE   NOT NULL  default current_date,
+    flightAltitude     BIGINT NOT NULL,
+    location           UUID   NOT NULL,
+    FOREIGN KEY (location) REFERENCES location (ID)
+
 );
 
 CREATE TABLE "user"
