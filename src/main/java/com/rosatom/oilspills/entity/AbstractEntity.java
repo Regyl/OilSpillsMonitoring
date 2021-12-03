@@ -12,7 +12,7 @@ public abstract class AbstractEntity {
     @Id
     private UUID id;
 
-    @CreatedDate
+    @CreatedDate //TODO: check
     private LocalDate creationTimestamp;
 
 }
