@@ -1,10 +1,12 @@
 CREATE TABLE pollution
 (
     ID                 UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    creation_timestamp DATE NOT NULL    default current_date,
+    creation_timestamp DATE   NOT NULL  default current_date,
     company_name       TEXT,
     company_inn        BIGINT,
-    hazard_type        VARCHAR(100)
+    hazard_type        VARCHAR(100),
+    latitude           BIGINT NOT NULL,
+    longitude          BIGINT NOT NULL
 );
 
 CREATE TABLE "user"
