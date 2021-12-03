@@ -11,6 +11,7 @@ import java.util.UUID;
 @Repository
 public interface UavRouteRepository extends ReactiveSortingRepository<UavRoute, UUID> {
 
-
+    @Query("SELECT uav_route.*, locations.* FROM uav_route JOIN uav_route_location locations ON uav_route.id = locations.uav_route_id")
+    Flux<UavRoute> findAllByLocations();
 
 }
