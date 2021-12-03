@@ -14,11 +14,9 @@ import reactor.core.publisher.Mono;
 public class PollutionMapper {
 
     private final ModelMapper mapper;
-    private final LocationService locationService;
 
-    public PollutionMapper(ModelMapper mapper, LocationService locationService) {
+    public PollutionMapper(ModelMapper mapper) {
         this.mapper = mapper;
-        this.locationService = locationService;
     }
 
     public Pollution toEntity(PollutionDto dto) {

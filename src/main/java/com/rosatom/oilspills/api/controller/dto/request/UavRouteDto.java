@@ -1,15 +1,13 @@
-package com.rosatom.oilspills.entity;
+package com.rosatom.oilspills.api.controller.dto.request;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 import java.util.UUID;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class UavRoute extends AbstractEntity {
+public class UavRouteDto {
 
     @NotNull
     private Set<UUID> locations;
