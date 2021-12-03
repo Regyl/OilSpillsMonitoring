@@ -3,6 +3,7 @@ package com.rosatom.oilspills.api.controller;
 import com.rosatom.oilspills.api.controller.dto.response.UavRouteDtoResponse;
 import com.rosatom.oilspills.api.mapper.UavRouteMapper;
 import com.rosatom.oilspills.service.UavRouteService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class UavRouteController {
     }
 
     @GetMapping("/")
+    @Operation(summary = "Get all UAV routes")
     public Flux<UavRouteDtoResponse> findAll() {
         return service.findAll()
                 .map(mapper::toDto);

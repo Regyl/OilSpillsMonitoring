@@ -7,6 +7,7 @@ import com.rosatom.oilspills.entity.Location;
 import com.rosatom.oilspills.service.LocationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -28,7 +29,7 @@ public class LocationController {
     }
 
     @GetMapping("/coordinates")
-    @Operation(summary = "")
+    @Operation(summary = "Find location by coordinates")
     public Mono<LocationDtoResponse> findByCoordinates(@RequestParam Long latitude,
                                                        @RequestParam Long longitude) {
         return service.findByCoordinates(latitude, longitude)
@@ -36,7 +37,8 @@ public class LocationController {
     }
 
     @PostMapping("/")
-    @Operation(summary = "")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Create new location")
     public Mono<LocationDtoResponse> save(@RequestBody LocationDto dto) {
         Location location = mapper.toEntity(dto);
         return service.save(location)
@@ -44,13 +46,14 @@ public class LocationController {
     }
 
     @GetMapping("/")
-    @Operation(summary = "")
+    @Operation(summary = "Get all locations")
     public Flux<LocationDtoResponse> findAll() {
         return service.findAll()
                 .map(mapper::toDto);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete by it's id")
     public Mono<Void> deleteById(@PathVariable UUID id) {
         return service.deleteById(id);
     }
