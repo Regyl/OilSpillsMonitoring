@@ -5,10 +5,11 @@ import com.rosatom.oilspills.api.mapper.UavRouteMapper;
 import com.rosatom.oilspills.service.UavRouteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+import java.util.UUID;
 
 @Tag(name = "UAV routes")
 
@@ -29,5 +30,11 @@ public class UavRouteController {
     public Flux<UavRouteDtoResponse> findAll() {
         return service.findAll()
                 .map(mapper::toDto);
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete UAV route by it's id")
+    public Mono<Void> deleteById(@PathVariable UUID id) {
+        return service.deleteById(id);
     }
 }
