@@ -1,5 +1,6 @@
 package com.rosatom.oilspills.api.controller.dto.response;
 
+import com.rosatom.oilspills.entity.UavRouteLocation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,7 +11,7 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = true)
 public class UavRouteDtoResponse extends AbstractDtoResponse {
 
-    private Set<UUID> locations;
+    private Set<UavRouteLocation> locations;
 
     private Long flightAltitude;
 }

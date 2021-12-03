@@ -59,9 +59,8 @@ public class PollutionController {
     @Operation(summary = "Create record about pollution")
     public Mono<PollutionDtoResponse> save(@RequestBody @Valid PollutionDto dto) {
         Pollution pollution = mapper.toEntity(dto);
-        return uavRouteService.generate(dto.getStartLocation(), dto.getEndLocation())
-                .publish(p -> service.save(pollution).map(mapper::toDto));
-
+        uavRouteService.generate(dto.getStartLocation(), dto.getEndLocation());
+        return service.save(pollution).map(mapper::toDto);
     }
 
     @DeleteMapping("/{id}")
