@@ -17,10 +17,7 @@ public class Pollution extends AbstractEntity {
     private HazardTypes hazardType;
 
     @NotNull
-    private Long latitude;
-
-    @NotNull
-    private Long longitude;
+    private Location location;
 
     private String additionalInfo;
 }
