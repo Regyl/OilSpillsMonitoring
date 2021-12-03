@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -17,7 +18,7 @@ public class Pollution extends AbstractEntity {
     private HazardTypes hazardType;
 
     @NotNull
-    private Location location;
+    private UUID location;
 
     private String additionalInfo;
 }

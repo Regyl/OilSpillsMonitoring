@@ -31,7 +31,7 @@ public class PollutionController {
     }
 
     @GetMapping("/")
-    @Operation(summary = "All polllutions")
+    @Operation(summary = "All pollutions")
     public Flux<PollutionDtoResponse> findAll() {
         return service.findAll()
                 .map(mapper::toDto);

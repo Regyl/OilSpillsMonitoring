@@ -32,4 +32,8 @@ public class LocationService {
     public Mono<Void> deleteById(UUID id) {
         return repository.deleteById(id);
     }
+
+    public Mono<Location> findById(UUID id) {
+        return repository.findById(id);
+    }
 }
