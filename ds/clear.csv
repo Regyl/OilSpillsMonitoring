@@ -1,4 +1,4 @@
-,priority_pollutant_type,registration_number_of_the_contaminated_site_in_the_register,location_of_the_contaminated_site,administrative_region,longitude,latitude,land_category_before_pollution,сontaminated_site_area_hectares,the_level_of_oil_pollution_of_soils_and_lands_mg_kg,level_of_oil_products_in_bottom_sediments_of_water_mg_kg_and_on_surface_waters_mg_cubic_dm,date_of_last_spill
+,pollutant_type,reg_num,location,adm_region,longitude,latitude,land_category,pol_area,pol_lvl,oil_lvl,spill_date
 2,нефть,ЛУК-2016-6,Район КП №186 (15м от дороги),Сургутский,73.50683333333333,62.59258333333334,земли лесного фонда,0.1703,"48300,0",нет,1905-07-08 00:00:00
 3,нефть,ЛУК-2016-7,Район КП №186 (30м от дороги),Сургутский,73.50819444444444,62.5435,земли лесного фонда,0.2595,"42300,0",нет,1905-07-08 00:00:00
 4,нефть,ЛУК-КГ-2018-1,т.вр.251А-т.вр.250А,Сургутский,73.34777777777778,62.61666666666667,земли лесного фонда,0.1559,"40600,0",нет,1905-07-10 00:00:00
