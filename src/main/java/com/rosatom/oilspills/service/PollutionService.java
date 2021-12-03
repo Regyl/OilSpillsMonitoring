@@ -27,11 +27,6 @@ public class PollutionService {
         return repository.save(pollution);
     }
 
-    public Mono<Pollution> findById(UUID id) {
-        return repository.findById(id)
-                .doOnError(throwable -> {throw new RuntimeException("idk");});
-    }
-
     public Mono<Void> deleteById(UUID id) {
         return repository.deleteById(id);
     }

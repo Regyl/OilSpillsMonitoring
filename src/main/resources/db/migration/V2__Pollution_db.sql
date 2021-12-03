@@ -1,0 +1,1 @@
+ALTER TABLE pollution ADD COLUMN additional_info TEXT;
