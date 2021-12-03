@@ -12,10 +12,12 @@ CREATE TABLE pollution
     creation_timestamp DATE NOT NULL    default current_date,
     company_name       TEXT,
     company_inn        BIGINT,
-    location           UUID NOT NULL,
+    start_location     UUID NOT NULL,
+    end_location       UUID NOT NULL,
     hazard_type        VARCHAR(100),
     additional_info    TEXT,
-    FOREIGN KEY (location) REFERENCES location (ID)
+    FOREIGN KEY (start_location) REFERENCES location (ID),
+    FOREIGN KEY (end_location) REFERENCES location (ID)
 );
 
 CREATE TABLE uav_route
