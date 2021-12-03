@@ -7,7 +7,6 @@ import com.rosatom.oilspills.entity.Pollution;
 import com.rosatom.oilspills.service.PollutionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
