@@ -30,15 +30,15 @@ public class PollutionController {
     }
 
     @GetMapping("/")
-    @Operation(summary = "All pollutions")
+    @Operation(summary = "Get all pollution records")
     public Flux<PollutionDtoResponse> findAll() {
         return service.findAll()
                 .map(mapper::toDto);
     }
 
     @PostMapping("/")
-    @Operation(summary = "Create new pollution")
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Create record about pollution")
     public Mono<PollutionDtoResponse> save(@RequestBody @Valid PollutionDto dto) {
         Pollution pollution = mapper.toEntity(dto);
         return service.save(pollution)
@@ -46,7 +46,7 @@ public class PollutionController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete pollution by it's id")
+    @Operation(summary = "Delete by it's id")
     public Mono<Void> deleteById(@PathVariable UUID id) {
         return service.deleteById(id);
     }
