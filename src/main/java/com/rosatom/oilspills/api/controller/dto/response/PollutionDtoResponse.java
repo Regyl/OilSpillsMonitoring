@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -16,9 +17,7 @@ public class PollutionDtoResponse extends AbstractDtoResponse {
 
     private HazardTypes hazardType;
 
-    private Long latitude;
-
-    private Long longitude;
+    private UUID locationId;
 
     private String additionalInfo;
 
