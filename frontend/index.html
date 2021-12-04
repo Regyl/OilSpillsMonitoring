@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+		integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+		crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+		integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+		crossorigin=""></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+	<div class="menu-top">
+		<ul class="list-items">
+			<li><div class="circle circle-red"></div> - площадь больше 2 км²</li>
+			<li><div class="circle circle-orange"></div> - площадь от 0.5 до 2 км²</li>
+			<li><div class="circle circle-green"></div> - площадь меньше 0.5 2км²</li>
+		</ul>
+	</div>
+	<div id="map"></div>
+	<script>
+		var map = L.map('map').setView([0, 0], 2);
+		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+			maxZoom: 18,
+			id: 'mapbox/streets-v11',
+			tileSize: 512,
+			zoomOffset: -1,
+			accessToken: 'pk.eyJ1IjoiaWdyb2dvb2QiLCJhIjoiY2t3cW4wdG1mMG9kNTJ4dXMyMW92bjMydCJ9.tLd-Dlxy7V5LfOmDbokZKw'
+		}).addTo(map);
+
+		var sslayer = null;
+
+		var asdsafeature = null;
+		var asdsafeature1 = null;
+
+		function onEachFeature(feature, layer) {
+			feature.fillColor = "red";
+			// does this feature have a property named popupContent?
+			if (feature.properties && feature.properties.pollutant_type) {
+				layer.bindPopup(
+					'<br><b>вид: </b>' + feature.properties.pollutant_type
+					+ '<br><img class="popup_img" src="/img/' + (Math.ceil(Math.random()*8)) + '.png">'
+					+ '<b><br></b>' + feature.properties.adm_region
+					+ '<b><br></b>' + feature.properties.land_category
+					+ '<b><br>Площадь загрязнения (км): </b>' + feature.properties.area
+					+ '<b><br>Степень загрязения: </b>' + feature.properties.pol_lvl
+					+ '<b><br>Дата обнаружения: </b>' + feature.properties.date
+					+ '<b><br>Ориентир местностоположения: </b>' + feature.properties.location
+				);
+				sslayer = layer;
+				asdsafeature = feature;
+			}
+		}
+
+		$.ajax({
+			type: 'GET',
+			url: 'data/dataframe.geojson',
+			data: '{"name":"jonas"}', // or JSON.stringify ({name: 'jonas'}),
+			success: function (data) {
+				L.geoJSON(data, {
+					onEachFeature: onEachFeature,
+					pointToLayer: function (feature, latlng) {
+						//console.log(feature.properties.pollutant_type);
+						var geojsonMarkerOptions = {
+							radius: 8,
+							fillColor: "#ff7800",
+							color: "#000",
+							weight: 1,
+							opacity: 1,
+							fillOpacity: 0.8
+						};
+
+						if(feature.properties.area > 1)
+							geojsonMarkerOptions.radius = feature.properties.area + 10;
+						
+						if(feature.properties.area > 2)
+							geojsonMarkerOptions.fillColor = "red";
+						if(feature.properties.area < 0.5)
+							geojsonMarkerOptions.fillColor = "green";
+
+						//if(feature.properties.pollutant_type == 'нефть')
+						//	data =  geojsonMarkerOptions;
+						
+						return L.circleMarker(latlng, geojsonMarkerOptions);
+					}
+				}).addTo(map);
+
+			},
+			contentType: "application/json",
+			dataType: 'json'
+		});
+	</script>
+</body>
+
+</html>
