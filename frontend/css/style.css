@@ -1,0 +1,57 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#OSMap, #map {
+  width: 100vw;
+  height: 100vh;
+}
+
+.popup_img {
+  width: 64px;
+  height: 64px;
+}
+
+.menu-top {
+  position: fixed;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.list-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+
+.list-items li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 20px;
+}
+
+.circle {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.circle-red {
+  background-color: red;
+}
+
+.circle-orange {
+  background-color: #ff6600;
+}
+
+.circle-green {
+  background-color: green;
+}
