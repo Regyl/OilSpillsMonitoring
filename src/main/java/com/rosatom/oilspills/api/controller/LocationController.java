@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Tag(name = "Locations")
+@Tag(name = "Локации")
 
 @RestController
 @RequestMapping("/locations")
@@ -41,7 +41,7 @@ public class LocationController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Create new location")
+    @Operation(summary = "Создание локации")
     public Mono<LocationDtoResponse> save(@RequestBody LocationDto dto) {
         Location location = mapper.toEntity(dto);
         return service.save(location)

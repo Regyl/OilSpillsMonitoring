@@ -14,6 +14,7 @@ CREATE TABLE pollution
     company_inn        BIGINT,
     start_location     UUID NOT NULL,
     end_location       UUID NOT NULL,
+    date               DATE,
     hazard_type        VARCHAR(100),
     additional_info    TEXT,
     FOREIGN KEY (start_location) REFERENCES location (ID),

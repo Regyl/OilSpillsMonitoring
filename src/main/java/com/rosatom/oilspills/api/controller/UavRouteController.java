@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-@Tag(name = "UAV routes")
+@Tag(name = "Маршруты для БПЛА")
 
 @RestController
 @RequestMapping("/uav-routes")
