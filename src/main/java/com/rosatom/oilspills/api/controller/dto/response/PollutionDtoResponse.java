@@ -4,7 +4,6 @@ import com.rosatom.oilspills.entity.enums.HazardTypes;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Data
@@ -17,7 +16,9 @@ public class PollutionDtoResponse extends AbstractDtoResponse {
 
     private HazardTypes hazardType;
 
-    private UUID locationId;
+    private UUID startLocation;
+
+    private UUID endLocation;
 
     private String additionalInfo;
 

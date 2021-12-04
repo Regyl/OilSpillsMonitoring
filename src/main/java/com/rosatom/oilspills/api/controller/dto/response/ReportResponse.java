@@ -5,9 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class LocationDtoResponse extends AbstractDtoResponse {
+public class ReportResponse extends AbstractDtoResponse {
 
-    private Long latitude;
-
-    private Long longitude;
+    private Integer totalAccident; //общее число разливов
 }

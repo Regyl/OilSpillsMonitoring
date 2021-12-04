@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  application:
+    image: 'regyl/oil-spills-monitoring:latest'
+    build:
+      context: .
+    container_name: application
+    depends_on:
+      - database
+    environment:
+      - SPRING_R2DBC_URL=r2dbc:postgresql://database:5432/oil-spill?createDatabaseIfNotExist=true
+      - SPRING_R2DBC_USERNAME=postgres
+      - SPRING_R2DBC_PASSWORD=SomeUselessPassword02
+      - SERVER_PORT=8050
+      - SPRING_FLYWAY_URL=jdbc:postgresql://database:5432/oil-spill
+      - SPRING_FLYWAY_USER=postgres
+      - SPRING_FLYWAY_PASSWORD=SomeUselessPassword02
+    ports:
+      - '8050:8050'
+
+  database:
+    image: 'postgres:13.3'
+    container_name: database
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=SomeUselessPassword02
+      - POSTGRES_DB=oil-spill
