@@ -2,6 +2,7 @@ package com.rosatom.oilspills.api.controller;
 
 import com.rosatom.oilspills.api.controller.dto.request.LocationDto;
 import com.rosatom.oilspills.api.controller.dto.response.LocationDtoResponse;
+import com.rosatom.oilspills.api.controller.dto.response.UavTemp;
 import com.rosatom.oilspills.api.mapper.LocationMapper;
 import com.rosatom.oilspills.entity.Location;
 import com.rosatom.oilspills.service.LocationService;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Tag(name = "Locations")
@@ -56,5 +59,18 @@ public class LocationController {
     @Operation(summary = "Delete by it's id")
     public Mono<Void> deleteById(@PathVariable UUID id) {
         return service.deleteById(id);
+    }
+
+    @GetMapping("/geojson")
+    @Operation(summary = "Geojson for UAV flight track")
+    public Flux<List<UavTemp>> findAllForGeojson() {
+        return service.findAll().collectList().flatMap(locations -> {
+            List<UavTemp> uavTemps = new ArrayList<>();
+            for (int i = 0; i < locations.size() / 3; i++) {
+                UavTemp uavTemp = UavTemp.of(locations.get(i), locations.get(i + 1), locations.get(i + 2));
+                uavTemps.add(uavTemp);
+            }
+            return Mono.just(uavTemps);
+        }).flatMapMany(Flux::just);
     }
 }
