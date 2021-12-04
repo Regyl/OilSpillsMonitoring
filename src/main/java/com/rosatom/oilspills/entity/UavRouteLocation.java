@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
 public class UavRouteLocation extends AbstractEntity {
 
     @NotNull
@@ -16,8 +17,4 @@ public class UavRouteLocation extends AbstractEntity {
 
     @NotNull
     private UUID locationId;
-
-    public UavRouteLocation(UUID locationId) {
-        this.locationId=locationId;
-    }
 }
