@@ -28,7 +28,7 @@ import java.util.UUID;
 
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
-@Tag(name = "Pollutions")
+@Tag(name = "Загрязнения")
 
 @RestController
 @RequestMapping("/pollutions")
