@@ -14,7 +14,7 @@
 
 - Git, Docker
 - Java 11, Spring Boot, PostgreSQL, Spring WebFlux
-- JavaScript, Saas
+- JavaScript, Saas, HTML, CSS, leafletjs
 - Python
 
 
