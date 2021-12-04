@@ -20,9 +20,15 @@
 
 	<div class="menu-top">
 		<ul class="list-items">
-			<li><div class="circle circle-red"></div> - площадь больше 2 км²</li>
-			<li><div class="circle circle-orange"></div> - площадь от 0.5 до 2 км²</li>
-			<li><div class="circle circle-green"></div> - площадь меньше 0.5 2км²</li>
+			<li>
+				<div class="circle circle-red"></div> - площадь больше 2 км²
+			</li>
+			<li>
+				<div class="circle circle-orange"></div> - площадь от 0.5 до 2 км²
+			</li>
+			<li>
+				<div class="circle circle-green"></div> - площадь меньше 0.5 2км²
+			</li>
 		</ul>
 	</div>
 	<div id="map"></div>
@@ -48,12 +54,13 @@
 			if (feature.properties && feature.properties.pollutant_type) {
 				layer.bindPopup(
 					'<br><b>вид: </b>' + feature.properties.pollutant_type
-					+ '<br><img class="popup_img" src="/img/' + (Math.ceil(Math.random()*8)) + '.png">'
+					+ '<br><img class="popup_img" src="/img/' + (Math.ceil(Math.random() * 8)) + '.png">'
 					+ '<b><br></b>' + feature.properties.adm_region
 					+ '<b><br></b>' + feature.properties.land_category
 					+ '<b><br>Площадь загрязнения (км): </b>' + feature.properties.area
 					+ '<b><br>Степень загрязения: </b>' + feature.properties.pol_lvl
 					+ '<b><br>Дата обнаружения: </b>' + feature.properties.date
+					+ '<b><br>долгота: </b>' + feature.properties.longitude + ', <b>широта: </b>' + feature.properties.latitude
 					+ '<b><br>Ориентир местностоположения: </b>' + feature.properties.location
 				);
 				sslayer = layer;
@@ -79,17 +86,17 @@
 							fillOpacity: 0.8
 						};
 
-						if(feature.properties.area > 1)
+						if (feature.properties.area > 1)
 							geojsonMarkerOptions.radius = feature.properties.area + 10;
-						
-						if(feature.properties.area > 2)
+
+						if (feature.properties.area > 2)
 							geojsonMarkerOptions.fillColor = "red";
-						if(feature.properties.area < 0.5)
+						if (feature.properties.area < 0.5)
 							geojsonMarkerOptions.fillColor = "green";
 
 						//if(feature.properties.pollutant_type == 'нефть')
 						//	data =  geojsonMarkerOptions;
-						
+
 						return L.circleMarker(latlng, geojsonMarkerOptions);
 					}
 				}).addTo(map);
